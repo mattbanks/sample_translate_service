@@ -1,0 +1,17 @@
+{
+	"ImportPath": "github.com/mattbanks/sample_translate_service",
+	"GoVersion": "go1.6",
+	"GodepVersion": "v74",
+	"Deps": [
+		{
+			"ImportPath": "github.com/emicklei/go-restful",
+			"Comment": "v1.2-64-g46c8c82",
+			"Rev": "46c8c82359ec1eca3fa0b46b48346aa96dfa9b87"
+		},
+		{
+			"ImportPath": "github.com/emicklei/go-restful/log",
+			"Comment": "v1.2-64-g46c8c82",
+			"Rev": "46c8c82359ec1eca3fa0b46b48346aa96dfa9b87"
+		}
+	]
+}
