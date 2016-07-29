@@ -1,1 +1,1 @@
-web: go run main.go
+web: sample_translate_service
