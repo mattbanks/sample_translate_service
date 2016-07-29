@@ -6,7 +6,7 @@ Accepts a JSON object and returns it back for now, with an appended timestamp.
 
 ### Request
 
-Passed to `http://localhost:8080/translate`
+Passed to `https://mighty-garden-67967.herokuapp.com/translate`
 
 ```json
 {
