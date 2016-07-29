@@ -1,6 +1,7 @@
 package main
 
 import (
+	"io"
 	"net/http"
 	"log"
 	"time"
@@ -16,12 +17,17 @@ type Message struct {
 
 func main() {
 	ws := new(restful.WebService)
+	ws.Route(ws.GET("/").To(home))
 	ws.Route(ws.POST("/translate").Consumes("application/json").To(translate))
 	restful.Add(ws)
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
 
-func translate(req *restful.Request, resp *restful.Response,) {
+func home(req *restful.Request, resp *restful.Response) {
+	io.WriteString(resp, "simple translation service")
+}
+
+func translate(req *restful.Request, resp *restful.Response) {
 	message := new(Message)
 
 	if err := req.ReadEntity(message); err != nil {
