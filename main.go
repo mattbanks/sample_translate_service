@@ -1,6 +1,8 @@
 package main
 
 import (
+	"fmt"
+	"os"
 	"io"
 	"net/http"
 	"log"
@@ -20,7 +22,7 @@ func main() {
 	ws.Route(ws.GET("/").To(home))
 	ws.Route(ws.POST("/translate").Consumes("application/json").To(translate))
 	restful.Add(ws)
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	log.Fatal(http.ListenAndServe(GetPort(), nil))
 }
 
 func home(req *restful.Request, resp *restful.Response) {
@@ -38,4 +40,15 @@ func translate(req *restful.Request, resp *restful.Response) {
 	message.Translated = time.Now()
 
 	resp.WriteAsJson(message)
+}
+
+// Get the Port from the environment so we can run on Heroku
+func GetPort() string {
+	var port = os.Getenv("PORT")
+	// Set a default port if there is nothing in the environment
+	if port == "" {
+		port = "8080"
+		fmt.Println("INFO: No PORT environment variable detected, defaulting to " + port)
+	}
+	return ":" + port
 }
